@@ -6,8 +6,8 @@ const router = express.Router(); //create router for express backend
 // use controller and router system for more organize code
 router.post("/signup", signup);
 
-router.get("/login", login);
+router.post("/login", login);
 
-router.get("/logout", logout);
+router.post("/logout", logout);
 
 export default router;
