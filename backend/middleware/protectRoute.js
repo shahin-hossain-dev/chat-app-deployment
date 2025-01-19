@@ -10,12 +10,12 @@ const protectRoute = async (req, res, next) => {
         .json({ error: "Unauthorized - No Token Provided" });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET); //verify token
     if (!decoded) {
       return res.status(401).json({ error: "Unauthorized - Token Invalid" });
     }
 
-    const user = await User.findById(decoded.userId).select("-password");
+    const user = await User.findById(decoded.userId).select("-password"); //remove password from this user info;
     if (!user) {
       return res.send(404).json({ error: "User not found" });
     }
