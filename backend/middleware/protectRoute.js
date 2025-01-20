@@ -3,7 +3,8 @@ import User from "../models/user.model.js";
 
 const protectRoute = async (req, res, next) => {
   try {
-    const token = req.token.jwt;
+    const token = req.cookies["chat-access-token"];
+    console.log(token);
     if (!token) {
       return res
         .status(401)

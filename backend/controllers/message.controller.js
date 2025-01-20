@@ -1,10 +1,10 @@
-import Conversation from "../models/conversation.model";
-import Message from "../models/message.model";
+import Conversation from "../models/conversation.model.js";
+import Message from "../models/message.model.js";
 
 export const sendMessage = async (req, res) => {
   try {
     const { id: receiverId } = req.params;
-    const senderId = req.user._id;
+    const senderId = req.user._id; //userId from token
     const { message } = req.body;
 
     let conversation = await Conversation.findOne({
@@ -24,7 +24,7 @@ export const sendMessage = async (req, res) => {
     });
 
     if (newMessage) {
-      conversation.message.push(newMessage._id);
+      conversation.messages.push(newMessage._id);
     }
 
     //SOCKET.IO Functionality will go here
@@ -32,7 +32,7 @@ export const sendMessage = async (req, res) => {
     //await conversation.save();
     //await newMessage.save();
 
-    //this will run in parallel
+    //this will run in parallel and optimized
     await Promise.all([conversation.save(), newMessage.save()]);
 
     res.status(201).json(newMessage);
