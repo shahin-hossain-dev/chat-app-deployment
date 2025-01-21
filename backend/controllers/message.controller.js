@@ -41,3 +41,25 @@ export const sendMessage = async (req, res) => {
     res.status(500).json("Internal Server Error");
   }
 };
+
+export const getMessages = async (req, res) => {
+  try {
+    const { id: userToChatId } = req.params; //other person id/receiverId;
+    const senderId = req.user._id;
+
+    const conversation = await Conversation.findOne({
+      // participant conversation schema ref(User) থেকে id গুলো match করে নিয়ে আসতেছে।
+      participants: { $all: [senderId, userToChatId] },
+      // এখানে populate হলো Conversation schema messages property এর
+      //  ref (Message) এর সুত্র ধরে 2 টা participant Id match করে, এমন ডাটা গুলো নিয়ে আসতেছে।
+    }).populate("messages");
+
+    if (!conversation) return res.status(200).json([]);
+
+    const messages = conversation.messages;
+    res.status(200).json(messages);
+  } catch (error) {
+    console.log("Error form getMessages controller: ", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
