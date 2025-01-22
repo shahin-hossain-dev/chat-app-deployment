@@ -1,11 +1,13 @@
 // package import
 import express from "express";
 import "dotenv/config";
+import cookieParser from "cookie-parser";
+
 //file import
 import authRoutes from "./routes/auth.routes.js"; //import auth router
 import connectToMongoDB from "./database/connectMongoDB.js";
 import messageRoutes from "./routes/message.routes.js";
-import cookieParser from "cookie-parser";
+import userRoutes from "./routes/user.routes.js";
 
 //config
 
@@ -20,6 +22,7 @@ app.use(cookieParser());
 // use separate router system for organize code
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/user", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("MERN Chat Server is Running");
