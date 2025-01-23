@@ -1,11 +1,12 @@
+import Conversations from "./Conversations";
 import SearchInput from "./SearchInput";
 
 const Sidebar = () => {
   return (
-    <div>
-      <h2>Side Bar</h2>
+    <div className="p-5">
       <SearchInput />
-      {/* <Conversation/> */}
+      <div className="divider px-2"></div>
+      <Conversations />
       {/* <LogoutButton/> */}
     </div>
   );
