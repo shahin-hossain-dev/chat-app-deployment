@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import GenderCheckBox from "./GenderCheckBox";
 
 const Signup = () => {
@@ -60,7 +61,10 @@ const Signup = () => {
             </div>
           </form>
           <p className="text-center">
-            Already Have an account, <a className="link link-primary">Login</a>
+            Already Have an account,{" "}
+            <Link to={"/login"} className="link link-primary">
+              Login
+            </Link>
           </p>
         </div>
       </div>

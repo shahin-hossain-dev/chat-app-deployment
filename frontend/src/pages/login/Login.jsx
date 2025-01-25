@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Login = () => {
   return (
     <div className="flex items-center justify-center flex-col max-w-96 mx-auto min-h-screen">
@@ -42,7 +44,9 @@ const Login = () => {
         </form>
         <p className="text-center">
           Don&apos;t Have any account,{" "}
-          <a className="link link-primary">Signup</a>
+          <Link to={"/signup"} className="link link-primary">
+            Signup
+          </Link>
         </p>
       </div>
     </div>
