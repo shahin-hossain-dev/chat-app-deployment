@@ -2,3 +2,33 @@
 
 /* daisy ui beta install for new vite*/
 @plugin "daisyui";
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px ;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.scroller{
+  overflow: auto;
+  scrollbar-color: #c1c1c1 #e6e6e6;
+  scrollbar-width: thin;
+  scrollbar-gutter: auto;
+  
+}
