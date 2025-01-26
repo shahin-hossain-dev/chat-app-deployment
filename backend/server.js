@@ -2,6 +2,7 @@
 import express from "express";
 import "dotenv/config";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 //file import
 import authRoutes from "./routes/auth.routes.js"; //import auth router
@@ -18,6 +19,7 @@ const PORT = process.env.PORT || 5000;
 //middlewares
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 // use separate router system for organize code
 app.use("/api/auth", authRoutes);
