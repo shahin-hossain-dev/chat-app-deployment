@@ -22,8 +22,6 @@ const Signup = () => {
     signup(inputs);
   };
 
-  if (loading) return <div>Loading...</div>;
-
   return (
     <div>
       <div className="flex items-center justify-center flex-col max-w-96 mx-auto min-h-screen">
@@ -95,8 +93,16 @@ const Signup = () => {
               selectedGender={inputs.gender}
             />
             <div className="form-control mt-6">
-              <button type="submit" className="btn btn-primary w-full">
-                Signup
+              <button
+                disabled={loading}
+                type="submit"
+                className="btn btn-primary w-full"
+              >
+                {loading ? (
+                  <span className="loading loading-spinner"></span>
+                ) : (
+                  "Signup"
+                )}
               </button>
             </div>
           </form>
