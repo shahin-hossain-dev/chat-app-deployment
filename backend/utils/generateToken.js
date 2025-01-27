@@ -5,11 +5,14 @@ const generateTokenAndSetCookies = (userId, res) => {
     expiresIn: "15d",
   });
 
-  res.cookie("chat-access-token", token, {
-    maxAge: 15 * 24 * 60 * 60 * 1000, //milliseconds
-    httpOnly: true, //prevent XSS attacks cross-site scripting attacks
-    sameSite: "strict", //CSRF attacks cross-site request forgery attacks
-    secure: process.env.NODE_ENV !== "development",
+  res.cookie("jwt", token, {
+    // maxAge: 15 * 24 * 60 * 60 * 1000, //milliseconds
+    // httpOnly: true, //prevent XSS attacks cross-site scripting attacks
+    // sameSite: "strict", //CSRF attacks cross-site request forgery attacks
+
+    httpOnly: true, // Prevent access via JavaScript
+    secure: false, // Use true if you're running over HTTPS
+    sameSite: "strict", // Required for cross-origin cookies
   });
 };
 
