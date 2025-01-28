@@ -27,7 +27,7 @@
 
 .scroller{
   overflow: auto;
-  scrollbar-color: #c1c1c1 #e6e6e6;
+  scrollbar-color: #c1c1c1 #5f738f00;
   scrollbar-width: thin;
   scrollbar-gutter: auto;
   

@@ -3,13 +3,16 @@ import Conversation from "./Conversation";
 
 const Conversations = () => {
   const { loading, conversations } = useGetConversations();
-  console.log(conversations);
 
   return (
-    <div>
-      <Conversation />
-      <Conversation />
-      <Conversation />
+    <div className="overflow-auto scroller">
+      {conversations.map((conversation, idx) => (
+        <Conversation
+          key={conversation._id}
+          conversation={conversation}
+          lastIdx={idx === conversations.length - 1} //for divider not showing logic
+        />
+      ))}
     </div>
   );
 };
