@@ -4,7 +4,7 @@ import useLogout from "../../hooks/useLogout";
 const LogoutButton = () => {
   const { logout, loading } = useLogout();
   return (
-    <div className="mt-auto">
+    <div className="mt-auto py-2">
       <button
         onClick={logout}
         className="flex items-center gap-2 cursor-pointer"
