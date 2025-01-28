@@ -1,19 +1,32 @@
+import { useEffect } from "react";
+import useConversation from "../../zustand/useConversation";
 import MassageInput from "./MassageInput";
 import Massages from "./Massages";
 import { IoChatboxOutline } from "react-icons/io5";
 
 const MessageContainer = () => {
-  const noChatSelected = true;
+  const { selectedConversation, setSelectedConversation } = useConversation();
+
+  useEffect(() => {
+    //cleanup function (during unmount)
+    //use it cause when user logout browser case user info and when login again it present the previous selected user.
+    return () => {
+      setSelectedConversation(null);
+    };
+  }, [setSelectedConversation]);
+
   return (
-    <div className="flex flex-col min-w-[450px] ">
-      {noChatSelected ? (
+    <div className="flex flex-col min-w-[450px]">
+      {!selectedConversation ? (
         <NoChatSelected />
       ) : (
         <>
           {/* header */}
           <div className="flex gap-2 bg-slate-500 px-2 py-1 mb-2">
             <span className="label text-black">To: </span>
-            <span className="font-semibold">Shahin Hossain</span>
+            <span className="font-semibold">
+              {selectedConversation?.fullName}
+            </span>
           </div>
           <Massages />
           <MassageInput />
