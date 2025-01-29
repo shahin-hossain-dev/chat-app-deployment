@@ -1,15 +1,25 @@
+import { useEffect, useRef } from "react";
 import useGetMessages from "../../hooks/useGetMessages";
 import Message from "./Message";
 
 const Massages = () => {
   const { messages, loading } = useGetMessages();
 
-  console.log(messages);
+  const lastMessageRef = useRef();
+
+  useEffect(() => {
+    lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
     <div className="px-4 flex-1 overflow-auto scroller">
+      {!loading && messages.length === 0 && (
+        <p className="text-center">Sand a Message to Start Conversation</p>
+      )}
       {messages.map((message) => (
-        <Message key={message._id} message={message} />
+        <div key={message._id} ref={lastMessageRef}>
+          <Message message={message} />
+        </div>
       ))}
     </div>
   );

@@ -16,6 +16,7 @@ const MassageInput = () => {
       <div className="w-full relative">
         <input
           onChange={(e) => setMessage(e.target.value)}
+          autoComplete="off"
           type="text"
           name="message"
           value={message}
