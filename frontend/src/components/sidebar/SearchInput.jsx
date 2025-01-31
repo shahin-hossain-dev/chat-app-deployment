@@ -17,10 +17,15 @@ const SearchInput = () => {
     if (searchText.length < 3) {
       return toast.error("at least 3 character");
     }
-    const filterConversation = conversations.find((c) =>
+    const conversation = conversations.find((c) =>
       c.fullName.toLowerCase().includes(searchText.toLowerCase())
     );
-    setSelectedConversation(filterConversation);
+    if (conversation) {
+      setSelectedConversation(conversation);
+      setSearchText("");
+    } else {
+      toast.error("No user found");
+    }
   };
   return (
     <div>

@@ -9,11 +9,12 @@ import authRoutes from "./routes/auth.routes.js"; //import auth router
 import connectToMongoDB from "./database/connectMongoDB.js";
 import messageRoutes from "./routes/message.routes.js";
 import userRoutes from "./routes/user.routes.js";
+import { app, server } from "./socket/socket.js";
 
 //config
 
 //variables
-const app = express();
+// const app = express();
 const PORT = process.env.PORT || 5000;
 
 //middlewares
@@ -35,7 +36,7 @@ app.get("/", (req, res) => {
   res.send("MERN Chat Server is Running");
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectToMongoDB(); // connect mongodb
   console.log(`Server Running on PORT ${PORT}`);
 });
