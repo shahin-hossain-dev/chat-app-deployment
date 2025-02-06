@@ -3,6 +3,7 @@ import useConversation from "../../zustand/useConversation";
 import MassageInput from "./MassageInput";
 import Massages from "./Massages";
 import { IoChatboxOutline } from "react-icons/io5";
+import { useAuthContext } from "../../context/AuthContext";
 
 const MessageContainer = () => {
   const { selectedConversation, setSelectedConversation } = useConversation();
@@ -37,11 +38,12 @@ const MessageContainer = () => {
 };
 
 const NoChatSelected = () => {
+  const { authUser } = useAuthContext();
   return (
     <div className="flex items-center justify-center w-full h-full">
       <div className="text-center flex flex-col items-center">
         <p className="text-xl md:text-2xl lg:text-3xl font-semibold">
-          Welcome Shahin
+          Welcome {authUser.fullName}
         </p>
         <p className="font-medium">Select a person start Messaging</p>
         <IoChatboxOutline className="text-xl md:text-5xl" />
