@@ -1,6 +1,6 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
-import { getReceiverSocketId } from "../socket/socket.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 export const sendMessage = async (req, res) => {
   try {
@@ -36,6 +36,11 @@ export const sendMessage = async (req, res) => {
 
     //SOCKET.IO Functionality will go here
     const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      console.log(receiverSocketId);
+      // io.ot(<socket_id>).emit() দিয়ে event এর মাধ্যমে specific user এর কাছে message send করবে
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
 
     res.status(201).json(newMessage);
   } catch (error) {
