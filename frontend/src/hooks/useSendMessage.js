@@ -10,9 +10,7 @@ const useSendMessage = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_PUBLIC_URL}/api/messages/send/${
-          selectedConversation?._id
-        }`,
+        `/api/messages/send/${selectedConversation?._id}`,
         {
           method: "POST",
           credentials: "include",

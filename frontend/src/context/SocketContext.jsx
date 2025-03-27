@@ -17,7 +17,7 @@ const SocketContextProvider = ({ children }) => {
   useEffect(() => {
     // console.log(authUser);
     if (authUser) {
-      const socketConnection = io(import.meta.env.VITE_PUBLIC_URL, {
+      const socketConnection = io("http://localhost:5000", {
         query: { userId: authUser._id }, //send logged in user Id
       });
       setSocket(socketConnection);

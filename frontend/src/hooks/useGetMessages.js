@@ -10,12 +10,10 @@ const useGetMessages = () => {
     const getMessage = async () => {
       setLoading(true);
       try {
-        const res = await fetch(
-          `${import.meta.env.VITE_PUBLIC_URL}/api/messages/${
-            selectedConversation._id
-          }`,
-          { method: "GET", credentials: "include" }
-        );
+        const res = await fetch(`/api/messages/${selectedConversation._id}`, {
+          method: "GET",
+          credentials: "include",
+        });
         const data = await res.json();
 
         if (data.error) throw new Error(data.error);

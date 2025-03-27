@@ -25,22 +25,19 @@ const useSignup = () => {
     setLoading(true);
     //send signup request
     try {
-      const res = await fetch(
-        `${import.meta.env.VITE_PUBLIC_URL}/api/auth/signup`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            fullName,
-            username,
-            password,
-            confirmPassword,
-            gender,
-          }),
-        }
-      );
+      const res = await fetch(`/api/auth/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName,
+          username,
+          password,
+          confirmPassword,
+          gender,
+        }),
+      });
       const data = await res.json();
       if (data.error) {
         throw new Error(data.error);
