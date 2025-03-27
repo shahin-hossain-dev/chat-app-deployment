@@ -17,9 +17,12 @@ const SocketContextProvider = ({ children }) => {
   useEffect(() => {
     // console.log(authUser);
     if (authUser) {
-      const socketConnection = io("http://localhost:5000", {
-        query: { userId: authUser._id }, //send logged in user Id
-      });
+      const socketConnection = io(
+        "https://chat-app-deployment-1ntg.onrender.com",
+        {
+          query: { userId: authUser._id }, //send logged in user Id
+        }
+      );
       setSocket(socketConnection);
 
       // socketConnection.on() use করা হয়েছে ্getOnlineUsers event কে listen করার জন্য।
